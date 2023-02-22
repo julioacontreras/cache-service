@@ -1,40 +1,19 @@
 import { serverHTTP } from '@/adapters/serverHTTP'
 
-import { createCaseUse } from '@/application/useCases/create'
-import { updateCaseUse } from '@/application/useCases/update'
-import { findByIdCaseUse } from '@/application/useCases/findById'
-import { findQueryCaseUse } from '@/application/useCases/findQuery'
-import { deleteCaseUse } from '@/application/useCases/delete'
+import { getCaseUse } from '@/application/useCases/get'
+import { setCaseUse } from '@/application/useCases/set'
 
 export function startApp() {
-  serverHTTP.add('create', {
-    useCase: createCaseUse,
-    route: '/api/formulary/:formularyName',
+  serverHTTP.add('get', {
+    useCase: getCaseUse,
+    route: '/api/fastdata/:key',
+    method: 'GET'
+  })
+
+  serverHTTP.add('set', {
+    useCase: setCaseUse,
+    route: '/api/fastdata/:key',
     method: 'POST'
-  })
-
-  serverHTTP.add('update', {
-    useCase: updateCaseUse,
-    route: '/api/formulary/:formularyName/:id',
-    method: 'PUT'
-  })
-
-  serverHTTP.add('findById', {
-    useCase: findByIdCaseUse,
-    route: '/api/formulary/:formularyName/:id',
-    method: 'GET'
-  })
-
-  serverHTTP.add('find', {
-    useCase: findQueryCaseUse,
-    route: '/api/formulary/:formularyName/show',
-    method: 'GET'
-  })
-
-  serverHTTP.add('delete', {
-    useCase: deleteCaseUse,
-    route: '/api/formulary/:formularyName/:id',
-    method: 'DELETE'
   })
 
   serverHTTP.run()

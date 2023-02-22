@@ -3,7 +3,7 @@ dotenv.config()
 
 import '@/infrastructure/logger'
 import '@/infrastructure/serverHttpFastify'
-import '@/infrastructure/dataSource/databaseMongodb'
+import '@/infrastructure/fastdata'
 
 import { startApp } from '@/application'
 
