@@ -1,12 +1,13 @@
 import * as redis from 'redis';
+import {logger} from '../../../adapters/logger';
 
 export class Fastdata {
     public client: any
     
     constructor() {
         this.client = redis.createClient();
-        this.client.on('error', (err:any) => console.log('Redis Client Error', err));
-        this.client.on('connect', () => console.log('redis connected!'));    
+        this.client.on('error', (err:any) => logger.info(`Redis Client Error ${err}`));
+        this.client.on('connect', () => logger.info('redis connected'));    
         if (!this.client) {
             return
         }
